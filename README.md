@@ -63,5 +63,5 @@ Mesmo sendo um projeto de análise de dados, ele segue uma estrutura em camadas 
 
 ---
 
-## 👩‍💻 Eu
+## 👩🏽‍💻 Eu
 - Raquel Maia
