@@ -1,0 +1,71 @@
+/* Aplica o gradiente no container principal do Streamlit */
+.stApp {
+    background: linear-gradient(180deg, #f82586, #6e0bb2, #390da2);
+    font-family: 'Poppins', sans-serif;
+    color: #ffffff;
+}
+
+
+h1, h2, h3 {
+    color: #f5b042;
+    font-size: 64.6px;
+}
+
+
+.stButton>button {
+    background-color: #cdf527;
+    color: #000000;
+    font-weight: bold;
+    border-radius: 20px;
+    padding: 0.5em 1em;
+    cursor: pointer;
+    font-size: 26.9px;
+}
+
+.css-18e3th9 { 
+    display: none !important; 
+}
+.titulo-perfia h1 {
+    color: #cdf527 !important;
+    font-weight: bold;
+    font-size: 64.6px;
+}
+
+
+.botao-home-fixo {
+    position: fixed !important;
+    top: 15px !important;      /* ajuste para subir ou descer */
+    right: 25px !important;    /* distância da direita */
+    z-index: 9999 !important;  /* fica por cima */
+}
+
+.botao-home-fixo button {
+    background: linear-gradient(180deg, #f82586, #6e0bb2, #390da2) !important;
+    color: white !important;
+    font-weight: bold !important;
+    border: none !important;
+    border-radius: 12px !important;
+    padding: 0.6em 1.2em !important;
+    font-size: 16px !important;
+    cursor: pointer !important;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2) !important;
+    transition: transform 0.2s ease !important;
+}
+
+.botao-home-fixo button:hover {
+    transform: scale(1.05) !important;
+}
+
+
+div[data-testid="stNumberInput"] {
+    max-width: 400px !important;
+    margin-left: 5px;
+    margin-right: 0 !important;
+    padding-bottom: 0 !important;
+    margin-bottom: 4px !important;  
+}
+
+
+
+
+

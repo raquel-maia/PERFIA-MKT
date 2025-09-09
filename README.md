@@ -40,19 +40,16 @@ Mesmo sendo um projeto de análise de dados, ele segue uma estrutura em camadas 
 ---
 
 ## 📐 Funcionalidades previstas
-- Estimar cliques com base no investimento mensal e CPC.  
-- Estimar leads com base no CPA.  
-- Ajustar média de leads (+1%).  
-- Calcular médias diárias de investimento, cliques e leads.  
-- Calcular taxa de conversão de cliques para leads.  
+- Estimativa inicial automática de cliques, leads e médias diárias com base em investimento, CPC e CPA, incluindo ajuste da média de leads (+1%).
+- Geração automática de relatórios e insights com suporte do GPT.
 - Criar gráficos interativos (Plotly) para visualizar os dados.  
-- Gerar relatórios e insights automáticos com GPT.
+- Envio automático de e-mail com o relatório gerado.
 
 ---
 
 ## 📅 Entregas da disciplina
-- **AC1 (14/09):** Configurações iniciais, criação do repositório e atividades no Trello, entrega de vídeo mostrando a funcionalidade inicial.  
-- **AC2 (12/10):** Primeira versão do cálculo de cliques, leads e médias com Streamlit e IA.  
+- **AC1 (14/09):** Configurações iniciais, criação do repositório e atividades no Trello, entrega de vídeo mostrando a funcionalidade inicial (Primeira versão do cálculo de cliques, leads e médias com Streamlit e relatório teste).  
+- **AC2 (12/10):**  Relatório gerado com IA.  
 - **AC3 (09/11):** Criação dos gráficos interativos.  
 - **Entrega Final (30/11):** Projeto completo, refinamentos e apresentação final.
 
