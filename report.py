@@ -12,7 +12,7 @@ def formatar_moeda(valor):
     """Formata número no padrão brasileiro R$ 1.234,56"""
     return locale.currency(valor, grouping=True)
 
-# Carrega variáveis de ambiente
+
 load_dotenv()
 client = OpenAI(api_key=os.environ.get('OPENAI_API_KEY'))
 
@@ -20,11 +20,10 @@ def ir_para_home():
     st.session_state.pagina_atual = "Home"
 
 def mostrar_report():
-    # Injeta CSS na página
+    
     load_css()
     
     with st.container():
-        # Cria duas colunas e pega a segunda para botões
         col_btn = st.columns([9, 3])[1]
         with col_btn:
             st.button(
@@ -34,7 +33,7 @@ def mostrar_report():
                 help="Clique para ir para Home"
             )
                 
-    # Conteúdo principal
+
     st.title("Assistente IA para Analistas de Performance Marketing")
     
     st.markdown('<div class="input-container">', unsafe_allow_html=True)
