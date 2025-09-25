@@ -37,12 +37,22 @@ def mostrar_report():
     st.title("Assistente IA para Analistas de Performance Marketing")
     
     st.markdown('<div class="input-container">', unsafe_allow_html=True)
+    
+     # 🔹 Inicializa contador de relatórios na sessão
+    if "relatorios_gerados" not in st.session_state:
+        st.session_state.relatorios_gerados = 0
+
+    # 🔹 Define limite máximo
+    LIMITE = 3  
 
     orcamento = st.number_input("Digite o orçamento do cliente (R$):", min_value=0.01, step=0.01)
     cpc = st.number_input("Digite o CPC (R$):", min_value=0.01, step=0.01)
     cpa = st.number_input("Digite o CPA (R$):", min_value=0.01, step=0.01)
 
     if st.button("Gerar análise pela IA"):
+        if st.session_state.relatorios_gerados >= LIMITE:
+            st.error("🚨 Seu limite de geração de relatórios acabou!")
+            return
         prompt = (
             f"Você é um especialista em marketing de performance. "
             f"O cliente possui um orçamento de {formatar_moeda(orcamento)}, "
@@ -74,3 +84,11 @@ def mostrar_report():
             texto = response.choices[0].message.content.strip()
             st.markdown(texto, unsafe_allow_html=True)
             st.success("Análise gerada com sucesso!")
+            
+            # 🔹 Incrementa contador
+            st.session_state.relatorios_gerados += 1
+
+            st.info(f"📊 Relatórios usados: {st.session_state.relatorios_gerados}/{LIMITE}")
+            
+
+        
