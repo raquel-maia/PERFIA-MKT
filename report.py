@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 import os
 import locale
 from utils import load_css
+from graphic import create_performance_analysis_plot
 
 # Configura locale para formato brasileiro
 locale.setlocale(locale.LC_ALL, 'pt_BR.UTF-8')
@@ -32,9 +33,9 @@ def mostrar_report():
                 on_click=ir_para_home,
                 help="Clique para ir para Home"
             )
-                
 
-    st.title("Assistente IA para Analistas de Performance Marketing")
+
+    st.markdown("<h1><span class='titulo-perfia'>Assistente IA</span> para Analistas de Mídia</h1>", unsafe_allow_html=True)
     
     st.markdown('<div class="input-container">', unsafe_allow_html=True)
     
@@ -44,7 +45,15 @@ def mostrar_report():
 
     # 🔹 Define limite máximo
     LIMITE = 3  
-
+    st.markdown("<h4 class='titulo-perfia'>Identificação do Cliente</h4>", unsafe_allow_html=True)
+    col1, col2 = st.columns(2)
+    with col1:
+        name_lead = st.text_input("Cliente:", placeholder="Digite o nome do Cliente..")
+    with col2:
+        name_business = st.text_input("Empresa:", placeholder="Digite o nome da sua Agência..")
+    
+    st.markdown("<h4 class='titulo-perfia'>Informações de Campanha</h4>", unsafe_allow_html=True)
+    st.caption("Preencha os dados abaixo para gerar o relatório:")
     orcamento = st.number_input("Digite o orçamento do cliente (R$):", min_value=0.01, step=0.01)
     cpc = st.number_input("Digite o CPC (R$):", min_value=0.01, step=0.01)
     cpa = st.number_input("Digite o CPA (R$):", min_value=0.01, step=0.01)
@@ -53,19 +62,38 @@ def mostrar_report():
         if st.session_state.relatorios_gerados >= LIMITE:
             st.error("🚨 Seu limite de geração de relatórios acabou!")
             return
+        
+    # 🔹 Cálculos básicos
+        investimento_diario = orcamento / 30  
+        cliques_diario = investimento_diario / cpc  
+        leads_diario = investimento_diario / cpa  
+
+        investimento_mensal = orcamento
+        cliques_mensal = investimento_mensal / cpc
+        leads_mensal = investimento_mensal / cpa
+        # 🔹 Calcula taxa de conversão de cliques em leads
+        if cliques_mensal != 0:
+            taxa_conversao = (leads_mensal / cliques_mensal) * 100
+        else:
+            taxa_conversao = 0
+        
         prompt = (
-            f"Você é um especialista em marketing de performance. "
+            f"Você é um especialista em midia de performance marketing e vai enviar uma proposta ao cliente. "
+            f"Diga Olá é o nome do cliente é {name_lead}. "
             f"O cliente possui um orçamento de {formatar_moeda(orcamento)}, "
             f"um CPC de {formatar_moeda(cpc)} e um CPA de {formatar_moeda(cpa)}. "
-            f"Gere um texto em HTML simples, usando apenas parágrafos <p>, "
-            f"em até 8 linhas. O texto deve: "
-            f"- apresentar cliques e leads esperados; "
-            f"- mostrar os valores diários, semanais e mensais de investimento, cliques e leads; "
-            f"- calcular a taxa de conversão de cliques em leads. "
-            f"Use português claro e persuasivo, sem termos técnicos pesados, "
-            f"e com foco em transmitir confiança e atrair o cliente. "
-            f"Não sugira otimizações, não coloque título, apenas a análise em tom comercial."
+            f"Os cálculos já foram feitos: "
+            f"Diariamente: {cliques_diario:.0f} cliques e {leads_diario:.0f} leads. "
+            f"Semanalmente: {cliques_diario*7:.0f} cliques e {leads_diario*7:.0f} leads. "
+            f"Mensalmente: {cliques_mensal:.0f} cliques e {leads_mensal:.0f} leads. "
+            f"A taxa de conversão de cliques em leads é de {taxa_conversao:.0f}%. "
+            f"Gere um texto em HTML simples usando <p>, em português claro, persuasivo e profissional, "
+            f"objetivo, evitando repetições ou elogios exagerados. "
+            f"Inclua agradecimento final. Exemplo: nós da 'coloque o nome da empresa' {name_business} agradecemos pela confiança... "
+            f"Não use listas, negrito ou caracteres especiais, nem fale que é especialista."
         )
+                                
+
 
         with st.spinner("Processando análise..."):
             response = client.chat.completions.create(
@@ -80,6 +108,21 @@ def mostrar_report():
                 ],
                 temperature=0.6
             )
+            
+            
+            
+            #st.write("📊 Debug:", investimento_diario, investimento_mensal, cliques_diario, cliques_mensal, leads_diario, leads_mensal)
+
+            # 🔹 Gera gráfico
+            fig = create_performance_analysis_plot(
+                investimento_mensal,      
+                investimento_diario,    
+                cliques_mensal,           
+                cliques_diario,           
+                leads_diario,             
+                leads_mensal               
+            )
+            st.plotly_chart(fig)
 
             texto = response.choices[0].message.content.strip()
             st.markdown(texto, unsafe_allow_html=True)

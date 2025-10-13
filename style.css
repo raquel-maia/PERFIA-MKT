@@ -25,10 +25,17 @@ h1, h2, h3 {
 .css-18e3th9 { 
     display: none !important; 
 }
-.titulo-perfia h1 {
-    color: #cdf527 !important;
+h1.titulo-perfia{
+    color: #cdf527;
     font-weight: bold;
     font-size: 64.6px;
+}
+
+h4.titulo-perfia {
+    font-family: 'Poppins', sans-serif;
+    font-style: bold;
+    font-size: 26px;
+    color: #ffffff;
 }
 
 
@@ -65,6 +72,29 @@ div[data-testid="stNumberInput"] {
     margin-bottom: 4px !important;  
 }
 
+/* Labels mais bonitas */
+label {
+    font-weight: 600 !important;
+    font-size: 0.9rem !important;
+    color: #f0f0f0 !important; 
+}
+
+/* Inputs arredondados e clean */
+.stTextInput input, .stNumberInput input {
+    border-radius: 12px !important;
+    padding: 10px !important;
+    font-size: 1rem !important;
+    background-color: #ffffff !important;
+    color: #333333 !important;
+    outline: none !important; /* Remove a borda padrão ao focar */
+    box-shadow: none !important; /* Remove sombras padrões */
+}
+/* Placeholder mais discreto */
+.stTextInput input::placeholder,
+.stNumberInput input::placeholder {
+    color: #999999 !important;
+    opacity: 1 !important;
+}
 
 
 
