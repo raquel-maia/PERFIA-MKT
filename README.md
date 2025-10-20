@@ -16,47 +16,52 @@ O **PerfIA MKT** nasceu para **automatizar isso**, ajudando na tomada de decisõ
 
 ## 🏗 Como o projeto está organizado
 
-Mesmo sendo um projeto de análise de dados, ele segue uma estrutura em camadas para ficar bem organizado:
+Mesmo sendo um projeto de análise de dados, ele segue uma estrutura em camadas para manter uma boa organização:
 
 - **Camada de Dados (Data Layer)**  
-  Recebe os dados das campanhas, processa e organiza. Aqui acontecem os cálculos de cliques, leads e taxa de conversão — a base da análise.
+  Utiliza **SQLite** como banco de dados local, garantindo leveza e praticidade durante o desenvolvimento.  
+  Os dados usados para análise são **importados do Kaggle**, simulando campanhas de marketing reais para fins de estudo.  
+  Aqui também acontecem os cálculos principais — como estimativas de cliques, leads e taxa de conversão.
 
 - **Camada de Lógica (Business Logic / Back-End)**  
-  Contém a lógica da análise: cálculos, ajustes de média e geração de insights automáticos com GPT.
+  Contém toda a lógica de negócio: cálculos, ajustes de médias, geração de insights automáticos com GPT e controle de fluxo entre dados e interface.
 
 - **Camada de Apresentação (Front-End / Interface)**  
-  Feita com **Streamlit**, para que qualquer pessoa consiga inserir os dados das campanhas e ver métricas, gráficos e relatórios de forma simples.  
-  O Streamlit também facilita fazer *deploy* online — você pode mostrar o sistema rodando sem precisar instalar nada no computador de quem estiver vendo.
+  Feita com **Streamlit**, para que qualquer pessoa consiga visualizar as métricas, gráficos e relatórios de forma simples e intuitiva.  
+  O Streamlit também facilita o *deploy* online, permitindo que o sistema rode diretamente no navegador sem precisar instalar nada localmente.
 
 ---
 
-## 🛠 Tecnologias planejadas
+## 🛠 Tecnologias utilizadas
 
-- **Python** — para cálculos, manipulação de dados e integração geral.  
-- **Streamlit** — para criar uma interface web interativa de maneira simples.  
-- **Plotly** — para gerar gráficos interativos e visualmente atrativos.  
-- **OpenAI GPT** — para gerar relatórios automáticos e insights.
-- **smtplib** — para enviar e-mails com os relatórios gerados.
-
-> ⚠️ Todas essas tecnologias serão implementadas conforme avançamos com o desenvolvimento.
+- **Python** — para cálculos, manipulação e integração de dados.  
+- **Streamlit** — interface web interativa.  
+- **Plotly** — gráficos dinâmicos e interativos.  
+- **SQLite** — banco de dados leve e eficiente para armazenar e consultar os dados.  
+- **OpenAI GPT** — geração automática de relatórios e insights.  
+- **ReportLab** — para gerar relatórios em **PDF** diretamente na aplicação.  
+- **Kaggle** — fonte dos dados utilizados nas análises (datasets públicos).
 
 ---
 
-## 📐 Funcionalidades previstas
+## 📐 Funcionalidades
 
-1. Estimativa automática de cliques, leads e médias diárias com base em investimento, CPC e taxa de conversão; com ajuste de média de leads (+1%).  
+1. Estimativa automática de cliques, leads e médias diárias com base em investimento, CPC e taxa de conversão (com ajuste de média de leads +1%).  
 2. Relatórios automáticos com insights gerados via IA (GPT).  
-3. Gráficos interativos usando Plotly para visualização de dados.  
-4. Envio automático de relatório por e-mail (smtplib).
+3. Gráficos interativos com Plotly.  
+4. Armazenamento de dados em **SQLite**.  
+5. Importação de datasets diretamente do **Kaggle**.  
+6. **Exportação de relatório em PDF** (nova funcionalidade que substitui o envio por e-mail).
 
 ---
 
 ## 📅 Entregas previstas na disciplina
 
-- **AC1 (14/09):** Configuração inicial, criação do repositório e das tarefas no Trello, entrega de vídeo com a funcionalidade inicial (cálculo de cliques, leads e médias com Streamlit).  
+- **AC1 (14/09):** Configuração inicial, criação do repositório e das tarefas no Trello, entrega de vídeo com a funcionalidade inicial manual (cálculo de cliques, leads e médias com Streamlit).  
 - **AC2 (12/10):** Relatório gerado com IA.  
-- **AC3 (09/11):** Gráficos interativos.  
-- **Entrega Final (30/11):** Projeto completo com refinamentos, envio de relatório por e-mail e apresentação final.
+- **AC3 (09/11):** Gráficos interativos e banco de dados SQLite.  
+- **Entrega Final (30/11):** Projeto completo com refinamentos e **geração de relatório em PDF**.
+
 
 ---
 
